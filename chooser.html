@@ -6,47 +6,48 @@
     <title>Grammar Games - Altersgruppe wählen</title>
     <link rel="stylesheet" href="shared.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="language.js"></script>
 </head>
 <body>
     <!-- A/B Test Variant Selector -->
     <div class="variant-selector">
-        <a href="index.html?variant=A" class="variant-btn">Variante A: 10-Min Games</a>
-        <a href="index.html?variant=B" class="variant-btn">Variante B: Multisensory Grammar</a>
+        <a href="index.html?variant=A" class="variant-btn" data-translate="variantA">Variante A: 10-Min Games</a>
+        <a href="index.html?variant=B" class="variant-btn" data-translate="variantB">Variante B: Multisensory Grammar</a>
     </div>
 
     <!-- Screen 3: Age Chooser -->
     <div class="screen">
         <div class="container">
             <div class="back-nav">
-                <a href="#" onclick="navigateWithTracking('preview.html', 'back-click'); return false;" class="back-btn">← Zurück</a>
+                <a href="#" onclick="navigateWithTracking('preview.html', 'back-click'); return false;" class="back-btn" data-translate="backButton">← Zurück</a>
             </div>
             
-            <h2>Wie alt ist Ihr Kind?</h2>
-            <p class="subtitle">Wir zeigen Ihnen die passenden Grammar Games</p>
+            <h2 data-translate="ageQuestion">Wie alt ist Ihr Kind?</h2>
+            <p class="subtitle" data-translate="ageSubtitle">Wir zeigen Ihnen die passenden Grammar Games</p>
             
             <div class="age-options">
                 <a href="#" class="age-card" onclick="selectAge('4-6'); return false;" data-age="4-6">
-                    <div class="age-range">4-6 Jahre</div>
-                    <div class="age-description">Spielerische Grundlagen</div>
+                    <div class="age-range" data-translate="age46">4-6 Jahre</div>
+                    <div class="age-description" data-translate="age46Desc">Spielerische Grundlagen</div>
                     <div class="example-games">
-                        <h4>Beispiel-Spiele:</h4>
+                        <h4 data-translate="age46Examples">Beispiel-Spiele:</h4>
                         <ul>
-                            <li>🐱 Tier-Wörter sortieren</li>
-                            <li>🌈 Farben-Adjektive</li>
-                            <li>🏃‍♂️ Action-Verben</li>
+                            <li data-translate="age46Game1">🐱 Tier-Wörter sortieren</li>
+                            <li data-translate="age46Game2">🌈 Farben-Adjektive</li>
+                            <li data-translate="age46Game3">🏃‍♂️ Action-Verben</li>
                         </ul>
                     </div>
                 </a>
                 
                 <a href="#" class="age-card" onclick="selectAge('7-10'); return false;" data-age="7-10">
-                    <div class="age-range">7-10 Jahre</div>
-                    <div class="age-description">Strukturierte Grammatik</div>
+                    <div class="age-range" data-translate="age710">7-10 Jahre</div>
+                    <div class="age-description" data-translate="age710Desc">Strukturierte Grammatik</div>
                     <div class="example-games">
-                        <h4>Beispiel-Spiele:</h4>
+                        <h4 data-translate="age710Examples">Beispiel-Spiele:</h4>
                         <ul>
-                            <li>📝 Sätze konstruieren</li>
-                            <li>⚡ Zeit-Formen-Quiz</li>
-                            <li>🔤 Wortarten-Memory</li>
+                            <li data-translate="age710Game1">📝 Sätze konstruieren</li>
+                            <li data-translate="age710Game2">⚡ Zeit-Formen-Quiz</li>
+                            <li data-translate="age710Game3">🔤 Wortarten-Memory</li>
                         </ul>
                     </div>
                 </a>
@@ -55,10 +56,10 @@
             <!-- Selection feedback -->
             <div id="selection-feedback" style="text-align: center; margin-top: 30px; display: none;">
                 <div class="card" style="background: linear-gradient(135deg, #FF8A95, #FFB3BA); color: white; max-width: 500px; margin: 0 auto;">
-                    <h3 style="color: white;">✓ Perfekt!</h3>
-                    <p style="color: rgba(255,255,255,0.9); font-size: 1.1em;" id="selection-text">Altersgruppe ausgewählt</p>
+                    <h3 style="color: white;" data-translate="perfect">✓ Perfekt!</h3>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 1.1em;" id="selection-text" data-translate="ageSelected">Altersgruppe ausgewählt</p>
                     <div style="margin-top: 20px;">
-                        <span style="opacity: 0.8;">Leite Sie weiter zu personalisierten Inhalten...</span>
+                        <span style="opacity: 0.8;" data-translate="redirecting">Leite Sie weiter zu personalisierten Inhalten...</span>
                     </div>
                 </div>
             </div>
@@ -106,7 +107,7 @@
             const selectionText = document.getElementById('selection-text');
             
             feedback.style.display = 'block';
-            selectionText.textContent = `Super! Wir haben passende Spiele für ${age}-Jährige zusammengestellt.`;
+            selectionText.textContent = window.languageSystem.t('ageSpecificText', { age: age });
             
             // Auto-advance after 2 seconds
             setTimeout(() => {
