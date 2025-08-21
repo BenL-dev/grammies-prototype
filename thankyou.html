@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grammar Games - Vielen Dank! Starter-Pack unterwegs</title>
     <link rel="stylesheet" href="shared.css">
+    <script src="language.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- A/B Test Variant Selector -->
     <div class="variant-selector">
-        <a href="index.html?variant=A" class="variant-btn">Variante A: 10-Min Games</a>
-        <a href="index.html?variant=B" class="variant-btn">Variante B: Multisensory Grammar</a>
+        <a href="index.html?variant=A" class="variant-btn" data-translate="variantA">Variante A: 10-Min Games</a>
+        <a href="index.html?variant=B" class="variant-btn" data-translate="variantB">Variante B: Multisensory Grammar</a>
     </div>
 
     <!-- Screen 5: Thank You -->
@@ -19,63 +20,63 @@
         <div class="container">
             <div class="thankyou-content" style="max-width: 600px; margin: 0 auto; text-align: center;">
                 <div class="success-icon">🎉</div>
-                <h2>Vielen Dank!</h2>
-                <p class="subtitle">Ihr Starter-Pack ist unterwegs</p>
+                <h2 data-translate="thankYou">Vielen Dank!</h2>
+                <p class="subtitle" data-translate="packOnTheWay">Ihr Starter-Pack ist unterwegs</p>
                 
                 <div class="confirmation-details">
                     <div class="detail-item">
                         <div class="icon">📧</div>
                         <div class="text">
-                            <strong>E-Mail gesendet</strong>
-                            <span>Prüfen Sie Ihren Posteingang (auch Spam-Ordner)</span>
+                            <strong data-translate="emailSent">E-Mail gesendet</strong>
+                            <span data-translate="checkInbox">Prüfen Sie Ihren Posteingang (auch Spam-Ordner)</span>
                         </div>
                     </div>
                     <div class="detail-item">
                         <div class="icon">📥</div>
                         <div class="text">
-                            <strong>Sofort verfügbar</strong>
-                            <span>PDFs direkt zum Ausdrucken</span>
+                            <strong data-translate="immediatelyAvailable">Sofort verfügbar</strong>
+                            <span data-translate="pdfReady">PDFs direkt zum Ausdrucken</span>
                         </div>
                     </div>
                     <div class="detail-item">
                         <div class="icon">🎮</div>
                         <div class="text">
-                            <strong>Loslegen</strong>
-                            <span id="selected-age-text">Spiele für Ihr Kind bereit</span>
+                            <strong data-translate="getStarted">Loslegen</strong>
+                            <span id="selected-age-text" data-translate="gamesReady">Spiele für Ihr Kind bereit</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="next-steps" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                    <a href="#" class="cta-button secondary" onclick="showMoreGames(); return false;">
+                    <a href="#" class="cta-button secondary" onclick="showMoreGames(); return false;" data-translate="moreGames">
                         Mehr Spiele ansehen
                     </a>
-                    <a href="#" class="cta-button primary" onclick="restartJourney(); return false;">
+                    <a href="#" class="cta-button primary" onclick="restartJourney(); return false;" data-translate="startOver">
                         Nochmal von vorne
                     </a>
                 </div>
 
                 <!-- Success metrics display -->
                 <div class="card" style="margin-top: 40px; background: linear-gradient(135deg, #FF8A95, #FFB3BA); color: white;">
-                    <h3 style="color: white; margin-bottom: 20px;">🎯 Prototype Erfolgreich!</h3>
+                    <h3 style="color: white; margin-bottom: 20px;" data-translate="prototypeSuccess">🎯 Prototype Erfolgreich!</h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;">
                         <div>
                             <div style="font-size: 2em; font-weight: bold;" id="final-submit-rate">--%</div>
-                            <div style="font-size: 0.9em; opacity: 0.9;">Email Submit Rate</div>
+                            <div style="font-size: 0.9em; opacity: 0.9;" data-translate="emailSubmitRate">Email Submit Rate</div>
                         </div>
                         <div>
                             <div style="font-size: 2em; font-weight: bold;" id="total-journey">--</div>
-                            <div style="font-size: 0.9em; opacity: 0.9;">Screen Journey</div>
+                            <div style="font-size: 0.9em; opacity: 0.9;" data-translate="screenJourney">Screen Journey</div>
                         </div>
                         <div>
                             <div style="font-size: 2em; font-weight: bold;" id="variant-tested">A</div>
-                            <div style="font-size: 0.9em; opacity: 0.9;">Variant Tested</div>
+                            <div style="font-size: 0.9em; opacity: 0.9;" data-translate="variantTested">Variant Tested</div>
                         </div>
                     </div>
                     <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.3);">
-                        <strong>Hypothese-Status: </strong>
+                        <strong data-translate="hypothesisStatus">Hypothese-Status: </strong>
                         <span id="hypothesis-status">Zu testen</span>
-                        <br><small style="opacity: 0.8;">Ziel: ≥8-12% Email Submit Rate</small>
+                        <br><small style="opacity: 0.8;" data-translate="target">Ziel: ≥8-12% Email Submit Rate</small>
                     </div>
                 </div>
             </div>
@@ -116,7 +117,7 @@
             // Update age-specific text
             const selectedAgeText = document.getElementById('selected-age-text');
             if (analytics.ageSelected) {
-                selectedAgeText.textContent = `Spiele für ${analytics.ageSelected}-Jährige bereit`;
+                selectedAgeText.textContent = window.languageSystem.t('gamesReadyAge', { age: analytics.ageSelected });
             }
             
             // Calculate final metrics
