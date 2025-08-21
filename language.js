@@ -556,17 +556,17 @@ class LanguageSystem {
         languageSelector.innerHTML = `
             <div class="language-dropdown">
                 <button class="language-btn" onclick="window.languageSystem.toggleDropdown()">
-                    🌍 <span data-translate="languageLabel">${this.t('languageLabel')}</span>: ${this.t('languages.' + this.currentLanguage)}
+                    🌍 ${this.t('languages.' + this.currentLanguage)}
                 </button>
                 <div class="language-options" id="language-options">
-                    <button onclick="window.languageSystem.changeLanguage('de')">
-                        ${this.t('languages.de')}
+                    <button onclick="window.languageSystem.changeLanguage('de')" class="${this.currentLanguage === 'de' ? 'active' : ''}">
+                        🇩🇪 ${this.t('languages.de')}
                     </button>
-                    <button onclick="window.languageSystem.changeLanguage('en')">
-                        ${this.t('languages.en')}
+                    <button onclick="window.languageSystem.changeLanguage('en')" class="${this.currentLanguage === 'en' ? 'active' : ''}">
+                        🇬🇧 ${this.t('languages.en')}
                     </button>
-                    <button onclick="window.languageSystem.changeLanguage('zh')">
-                        ${this.t('languages.zh')}
+                    <button onclick="window.languageSystem.changeLanguage('zh')" class="${this.currentLanguage === 'zh' ? 'active' : ''}">
+                        🇨🇳 ${this.t('languages.zh')}
                     </button>
                 </div>
             </div>
@@ -577,8 +577,8 @@ class LanguageSystem {
         style.textContent = `
             .language-selector {
                 position: fixed;
-                top: 80px;
-                left: 20px;
+                top: 20px;
+                right: 20px;
                 z-index: 1001;
             }
 
@@ -587,37 +587,44 @@ class LanguageSystem {
             }
 
             .language-btn {
-                padding: 10px 16px;
-                background: rgba(255, 255, 255, 0.95);
-                color: #2c3e50;
-                border: 2px solid rgba(255, 255, 255, 0.3);
+                padding: 12px 18px;
+                background: rgba(255, 255, 255, 0.15);
+                color: white;
+                border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 25px;
                 font-size: 14px;
                 font-weight: 500;
                 cursor: pointer;
                 transition: all 0.3s ease;
-                backdrop-filter: blur(10px);
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(15px);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                font-family: 'Poppins', sans-serif;
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
 
             .language-btn:hover {
-                background: rgba(255, 255, 255, 1);
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+                background: rgba(255, 255, 255, 0.25);
+                border-color: rgba(255, 255, 255, 0.4);
+                box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
                 transform: translateY(-2px);
             }
 
             .language-options {
                 position: absolute;
                 top: 100%;
-                left: 0;
-                background: white;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
                 border-radius: 15px;
-                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-                padding: 8px;
-                min-width: 150px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                backdrop-filter: blur(20px);
+                padding: 10px;
+                min-width: 160px;
                 display: none;
-                margin-top: 5px;
+                margin-top: 8px;
                 z-index: 1002;
+                border: 1px solid rgba(255, 255, 255, 0.3);
             }
 
             .language-options.open {
@@ -631,32 +638,46 @@ class LanguageSystem {
             }
 
             .language-options button {
-                display: block;
+                display: flex;
+                align-items: center;
+                gap: 10px;
                 width: 100%;
-                padding: 10px 15px;
+                padding: 12px 16px;
                 border: none;
                 background: none;
                 color: #2c3e50;
                 cursor: pointer;
-                border-radius: 8px;
+                border-radius: 10px;
                 text-align: left;
                 font-size: 14px;
-                transition: background 0.2s ease;
+                font-weight: 500;
+                font-family: 'Poppins', sans-serif;
+                transition: all 0.2s ease;
             }
 
             .language-options button:hover {
-                background: #f8f9fa;
+                background: rgba(102, 126, 234, 0.1);
+                transform: translateX(2px);
             }
 
             .language-options button.active {
-                background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+                background: linear-gradient(45deg, #667eea, #764ba2);
                 color: white;
+                transform: translateX(2px);
+                box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
             }
         `;
         document.head.appendChild(style);
 
-        // Insert language selector into page
-        document.body.insertBefore(languageSelector, document.body.firstChild);
+        // Insert language selector into page (wait for DOM to be ready)
+        if (document.body) {
+            document.body.insertBefore(languageSelector, document.body.firstChild);
+        } else {
+            // Wait for DOM to be ready
+            document.addEventListener('DOMContentLoaded', () => {
+                document.body.insertBefore(languageSelector, document.body.firstChild);
+            });
+        }
     }
 
     toggleDropdown() {
@@ -675,9 +696,30 @@ class LanguageSystem {
             
             // Update page content
             this.updatePageContent();
+            
+            // Update dropdown button text
+            this.updateDropdownButton();
+            
             this.toggleDropdown(); // Close dropdown
             
             console.log(`🌍 Language changed to: ${lang}`);
+        }
+    }
+    
+    updateDropdownButton() {
+        const languageBtn = document.querySelector('.language-btn');
+        if (languageBtn) {
+            languageBtn.innerHTML = `🌍 ${this.t('languages.' + this.currentLanguage)}`;
+        }
+        
+        // Update active state in dropdown options
+        document.querySelectorAll('.language-options button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        const activeBtn = document.querySelector(`[onclick*="${this.currentLanguage}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add('active');
         }
     }
 
