@@ -100,6 +100,24 @@ class LanguageSystem {
                 verbDesc: 'Action Words',
                 adjectiveDesc: 'Describing Words',
                 
+                // Grammar exercise elements (stay in English)
+                grammarGame1: 'Grammar Game #1',
+                nounVerbAdj: 'Noun • Verb • Adjective',
+                perfectSentence: '✨ "I play games!" ✨',
+                sentenceStructure: '👧 Pronoun + 🎮 Verb + 🎲 Noun = Perfect Sentence!',
+                
+                // Analytics labels
+                currentVariant: 'Aktuelle Variante:',
+                pageViews: 'Page Views:',
+                nextScreen: 'Nächster Screen:',
+                targetCTR: 'Ziel-CTR:',
+                targetCTRValue: '→ Games ansehen',
+                journeyComplete: '🏆 Journey Complete:',
+                emailSubmitted: '✓ Email Submitted',
+                hypothesisFulfilled: 'Hypothese erfüllt:',
+                testing: 'Testend...',
+                actions: 'Actions:',
+                
                 // Age Chooser (chooser.html)
                 ageQuestion: 'Wie alt ist Ihr Kind?',
                 ageSubtitle: 'Wir zeigen Ihnen die passenden Grammar Games',
@@ -200,7 +218,39 @@ class LanguageSystem {
                 
                 // Form validation
                 validEmailRequired: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
-                sending: '📧 Wird gesendet...'
+                sending: '📧 Wird gesendet...',
+
+                // Analytics Panel Labels (Age Chooser)
+                ageChooserTitle: '📊 Screen 3: Age Chooser',
+                previewToChooserCTR: 'Preview → Chooser CTR:',
+                nextScreenChooser: 'Nächster Screen:',
+                conversionGoal: 'Conversion-Ziel:',
+                ageSelection: 'Altersauswahl',
+                segmentation: 'Segmentierung:',
+                ageSegmentation: '4-6 vs 7-10',
+
+                // Analytics Panel Labels (Hero)
+                heroTitle: '📊 Screen 1: Hero',
+                targetCTR: 'Ziel-CTR:',
+
+                // Analytics Panel Labels (Preview)
+                previewAnalyticsTitle: '📊 Screen 2: Preview',
+                heroToPreviewCTR: 'Hero → Preview CTR:',
+                engagementGoal: 'Engagement-Ziel:',
+                gameInterest: 'Game-Interesse',
+
+                // Analytics Panel Labels (Email Capture)
+                captureTitle: '📊 Screen 4: Email Capture',
+                chooserToCaptureCTR: 'Chooser → Capture CTR:',
+                submitGoal: '🎯 Ziel:',
+                submitTarget: '8-12% Submit',
+                mainConversion: 'Hauptkonversion:',
+                criticalScreen: '★ Kritischer Screen',
+
+                // Analytics Panel Labels (Thank You)
+                thankyouTitle: '📊 Screen 5: Thank You',
+                actions: 'Actions:',
+                moreRestart: 'Mehr | Restart',
             },
 
             // English translations
@@ -268,6 +318,12 @@ class LanguageSystem {
                 nounDesc: 'Things & People',
                 verbDesc: 'Action Words',
                 adjectiveDesc: 'Describing Words',
+                
+                // Grammar exercise elements (stay in English)
+                grammarGame1: 'Grammar Game #1',
+                nounVerbAdj: 'Noun • Verb • Adjective',
+                perfectSentence: '✨ "I play games!" ✨',
+                sentenceStructure: '👧 Pronoun + 🎮 Verb + 🎲 Noun = Perfect Sentence!',
                 
                 // Age Chooser
                 ageQuestion: 'How old is your child?',
@@ -361,6 +417,7 @@ class LanguageSystem {
                 pageViews: 'Page Views:',
                 nextScreen: 'Next Screen:',
                 targetCTR: 'Target CTR:',
+                targetCTRValue: '→ View Games',
                 journeyComplete: '🏆 Journey Complete:',
                 emailSubmitted: '✓ Email Submitted',
                 hypothesisFulfilled: 'Hypothesis Fulfilled:',
@@ -369,7 +426,49 @@ class LanguageSystem {
                 
                 // Form validation
                 validEmailRequired: 'Please enter a valid email address.',
-                sending: '📧 Sending...'
+                sending: '📧 Sending...',
+
+                // Analytics Panel Labels (Age Chooser)
+                ageChooserTitle: '📊 Screen 3: Age Chooser',
+                previewToChooserCTR: 'Preview → Chooser CTR:',
+                nextScreenChooser: 'Next Screen:',
+                conversionGoal: 'Conversion Goal:',
+                ageSelection: 'Age Selection',
+                segmentation: 'Segmentation:',
+                ageSegmentation: '4-6 vs 7-10',
+
+                // Analytics Panel Labels (Hero)
+                heroTitle: '📊 Screen 1: Hero',
+                targetCTR: 'Target CTR:',
+
+                // Analytics Panel Labels (Preview)
+                previewAnalyticsTitle: '📊 Screen 2: Preview',
+                heroToPreviewCTR: 'Hero → Preview CTR:',
+                engagementGoal: 'Engagement Goal:',
+                gameInterest: 'Game Interest',
+
+                // Analytics Panel Labels (Email Capture)
+                captureTitle: '📊 Screen 4: Email Capture',
+                chooserToCaptureCTR: 'Chooser → Capture CTR:',
+                submitGoal: '🎯 Goal:',
+                submitTarget: '8-12% Submit',
+                mainConversion: 'Main Conversion:',
+                criticalScreen: '★ Critical Screen',
+
+                // Analytics Panel Labels (Thank You)
+                thankyouTitle: '📊 Screen 5: Thank You',
+                actions: 'Actions:',
+                moreRestart: 'More | Restart',
+
+                // Hypothesis Status Messages
+                hypothesisExcellent: '🎉 Excellent! ({rate}%)',
+                hypothesisConfirmed: '✅ Hypothesis Confirmed! ({rate}%)',
+                hypothesisBelow: '📊 Below Target ({rate}%)',
+
+                // JavaScript Alert/Confirm Messages
+                moreGamesFeature: '🎮 More Games Feature!\n\nIn the real application:\n• Additional Game Packages\n• Premium Content\n• Age-specific Recommendations\n• Community Features\n\nThis would lead to an extended catalog.',
+                restartJourneyConfirm: '🔄 Restart Journey?\n\nThis will:\n• Reset Analytics\n• Start a new session\n• Return to Hero Screen\n\nContinue?',
+                additionalGamesMessage: '🎮 More games would be shown here...\n\nIn the real app:\n• Additional Game Packages\n• Premium Content\n• Personalized Recommendations',
             },
 
             // Chinese translations
@@ -437,6 +536,12 @@ class LanguageSystem {
                 nounDesc: 'Things & People',
                 verbDesc: 'Action Words',
                 adjectiveDesc: 'Describing Words',
+                
+                // Grammar exercise elements (stay in English)
+                grammarGame1: 'Grammar Game #1',
+                nounVerbAdj: 'Noun • Verb • Adjective',
+                perfectSentence: '✨ "I play games!" ✨',
+                sentenceStructure: '👧 Pronoun + 🎮 Verb + 🎲 Noun = Perfect Sentence!',
                 
                 // Age Chooser
                 ageQuestion: '您的孩子几岁？',
@@ -530,6 +635,7 @@ class LanguageSystem {
                 pageViews: '页面浏览量：',
                 nextScreen: '下一屏：',
                 targetCTR: '目标点击率：',
+                targetCTRValue: '→ 查看游戏',
                 journeyComplete: '🏆 旅程完成：',
                 emailSubmitted: '✓ 邮件已提交',
                 hypothesisFulfilled: '假设实现：',
@@ -538,34 +644,81 @@ class LanguageSystem {
                 
                 // Form validation
                 validEmailRequired: '请输入有效的邮箱地址。',
-                sending: '📧 发送中...'
+                sending: '📧 发送中...',
+
+                // Analytics Panel Labels (Age Chooser)
+                ageChooserTitle: '📊 屏幕3：年龄选择',
+                previewToChooserCTR: '预览→选择器点击率：',
+                nextScreenChooser: '下一屏：',
+                conversionGoal: '转化目标：',
+                ageSelection: '年龄选择',
+                segmentation: '细分：',
+                ageSegmentation: '4-6岁vs7-10岁',
+
+                // Analytics Panel Labels (Hero)
+                heroTitle: '📊 屏幕1：英雄',
+                targetCTR: '目标点击率：',
+
+                // Analytics Panel Labels (Preview)
+                previewAnalyticsTitle: '📊 屏幕2：预览',
+                heroToPreviewCTR: '英雄→预览点击率：',
+                engagementGoal: '参与目标：',
+                gameInterest: '游戏兴趣',
+
+                // Analytics Panel Labels (Email Capture)
+                captureTitle: '📊 屏幕4：邮箱收集',
+                chooserToCaptureCTR: '选择器→收集点击率：',
+                submitGoal: '🎯 目标：',
+                submitTarget: '8-12%提交',
+                mainConversion: '主要转化：',
+                criticalScreen: '★ 关键屏幕',
+
+                // Analytics Panel Labels (Thank You)
+                thankyouTitle: '📊 屏幕5：谢谢',
+                actions: '操作：',
+                moreRestart: '更多 | 重新开始',
+
+                // Hypothesis Status Messages
+                hypothesisExcellent: '🎉 太棒了！({rate}%)',
+                hypothesisConfirmed: '✅ 假设证实！({rate}%)',
+                hypothesisBelow: '📊 未达目标 ({rate}%)',
+
+                // JavaScript Alert/Confirm Messages
+                moreGamesFeature: '🎮 更多游戏功能！\n\n在真实应用中：\n• 额外的游戏包\n• 高级内容\n• 特定年龄段推荐\n• 社区功能\n\n这将带来扩展的目录。',
+                restartJourneyConfirm: '🔄 重新开始旅程？\n\n这将：\n• 重置分析\n• 开始新会话\n• 返回英雄屏幕\n\n继续？',
+                additionalGamesMessage: '🎮 这里会显示更多游戏...\n\n在真实应用中：\n• 额外的游戏包\n• 高级内容\n• 个性化推荐',
             }
         };
     }
 
     initializeLanguageSystem() {
-        this.addLanguageSelector();
-        this.updatePageContent();
-        console.log(`🌍 Language system initialized: ${this.currentLanguage}`);
+        try {
+            console.log('🚀 Initializing Language System...');
+            this.addLanguageSelector();
+            this.updatePageContent();
+            console.log(`🌍 Language system initialized: ${this.currentLanguage}`);
+        } catch (error) {
+            console.error('❌ Error initializing language system:', error);
+        }
     }
 
     addLanguageSelector() {
-        // Create language selector HTML
+        // Create language selector HTML - simplified version for debugging
         const languageSelector = document.createElement('div');
         languageSelector.className = 'language-selector';
         languageSelector.innerHTML = `
-            <div class="language-dropdown">
-                <button class="language-btn" onclick="window.languageSystem.toggleDropdown()">
+            <div class="language-dropdown" style="position: fixed; top: 20px; right: 20px; z-index: 1001;">
+                <button class="language-btn" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';" style="padding: 12px 18px; background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 25px; font-size: 14px; cursor: pointer;">
                     🌍 ${this.t('languages.' + this.currentLanguage)}
                 </button>
-                <div class="language-options" id="language-options">
-                    <button onclick="window.languageSystem.changeLanguage('de')" class="${this.currentLanguage === 'de' ? 'active' : ''}">
+                <div class="language-options" style="display: none; position: absolute; top: 100%; right: 0; background: rgba(255, 255, 255, 0.95); border-radius: 15px; padding: 10px; min-width: 160px; margin-top: 8px;">
+                    <button onclick="console.log('German clicked'); window.languageSystem.changeLanguage('de')" style="display: block; width: 100%; padding: 12px 16px; border: none; background: none; color: #2c3e50; cursor: pointer; border-radius: 10px; text-align: left; font-size: 14px;" class="${this.currentLanguage === 'de' ? 'active' : ''}">
                         🇩🇪 ${this.t('languages.de')}
                     </button>
-                    <button onclick="window.languageSystem.changeLanguage('en')" class="${this.currentLanguage === 'en' ? 'active' : ''}">
+                    <button onclick="console.log('English clicked'); window.languageSystem.changeLanguage('en')" style="display: block; width: 100%; padding: 12px 16px; border: none; background: none; color: #2c3e50; cursor: pointer; border-radius: 10px; text-align: left; font-size: 14px;" class="${this.currentLanguage === 'en' ? 'active' : ''}">
                         🇬🇧 ${this.t('languages.en')}
                     </button>
-                    <button onclick="window.languageSystem.changeLanguage('zh')" class="${this.currentLanguage === 'zh' ? 'active' : ''}">
+                    <button onclick="console.log('Chinese clicked'); window.languageSystem.changeLanguage('zh')" style="display: block; width: 100%; padding: 12px 16px; border: none; background: none; color: #2c3e50; cursor: pointer; border-radius: 10px; text-align: left; font-size: 14px;" class="${this.currentLanguage === 'zh' ? 'active' : ''}">
                         🇨🇳 ${this.t('languages.zh')}
                     </button>
                 </div>
@@ -577,8 +730,8 @@ class LanguageSystem {
         style.textContent = `
             .language-selector {
                 position: fixed;
-                top: 20px;
-                right: 20px;
+                top: 10px;
+                right: 120px;
                 z-index: 1001;
             }
 
@@ -681,28 +834,55 @@ class LanguageSystem {
     }
 
     toggleDropdown() {
-        const options = document.getElementById('language-options');
-        options.classList.toggle('open');
+        // Simplified version - not needed with inline onclick
+        console.log('Toggle dropdown called');
     }
 
     changeLanguage(lang) {
+        console.log('🔄 changeLanguage called with:', lang);
+
+        // Check if languageSystem exists
+        if (!window.languageSystem) {
+            console.error('❌ window.languageSystem is not available');
+            return;
+        }
+
+        console.log('Current language:', this.currentLanguage);
+        console.log('Available languages:', ['de', 'en', 'zh']);
+        console.log('Language is valid:', ['de', 'en', 'zh'].includes(lang));
+        console.log('Language is different:', lang !== this.currentLanguage);
+
         if (['de', 'en', 'zh'].includes(lang) && lang !== this.currentLanguage) {
+            console.log('✅ Language change conditions met, proceeding...');
+
             this.saveLanguage(lang);
-            
+            console.log('💾 Language saved to localStorage');
+
             // Update URL parameter
             const url = new URL(window.location);
             url.searchParams.set('lang', lang);
             window.history.replaceState(null, '', url);
-            
+            console.log('🔗 URL updated with lang parameter');
+
             // Update page content
+            console.log('📝 Updating page content...');
             this.updatePageContent();
-            
+
             // Update dropdown button text
+            console.log('🔘 Updating dropdown button...');
             this.updateDropdownButton();
-            
-            this.toggleDropdown(); // Close dropdown
-            
+
+            // Close dropdown
+            const options = document.querySelector('.language-options');
+            if (options) {
+                options.style.display = 'none';
+                console.log('📂 Dropdown closed');
+            }
+
             console.log(`🌍 Language changed to: ${lang}`);
+            console.log('🎉 Language change completed!');
+        } else {
+            console.log('❌ Language change conditions not met');
         }
     }
     
@@ -711,16 +891,14 @@ class LanguageSystem {
         if (languageBtn) {
             languageBtn.innerHTML = `🌍 ${this.t('languages.' + this.currentLanguage)}`;
         }
-        
+
         // Update active state in dropdown options
         document.querySelectorAll('.language-options button').forEach(btn => {
             btn.classList.remove('active');
+            if (btn.onclick && btn.onclick.toString().includes(this.currentLanguage)) {
+                btn.classList.add('active');
+            }
         });
-        
-        const activeBtn = document.querySelector(`[onclick*="${this.currentLanguage}"]`);
-        if (activeBtn) {
-            activeBtn.classList.add('active');
-        }
     }
 
     t(key, params = {}) {
@@ -749,35 +927,153 @@ class LanguageSystem {
     updatePageContent() {
         // Update document title
         document.title = this.t('pageTitle');
-        
+
         // Update HTML lang attribute
         document.documentElement.lang = this.currentLanguage === 'zh' ? 'zh-CN' : this.currentLanguage;
-        
+
         // Update all elements with data-translate attribute
         document.querySelectorAll('[data-translate]').forEach(element => {
             const key = element.getAttribute('data-translate');
             const params = element.getAttribute('data-translate-params');
             const parsedParams = params ? JSON.parse(params) : {};
-            
+
             element.textContent = this.t(key, parsedParams);
         });
-        
+
         // Update form placeholders
         const emailInput = document.getElementById('email-input');
         const nameInput = document.getElementById('name-input');
         if (emailInput) emailInput.placeholder = this.t('emailPlaceholder');
         if (nameInput) nameInput.placeholder = this.t('namePlaceholder');
-        
+
         // Update language selector button
-        const languageBtn = document.querySelector('.language-btn span');
-        if (languageBtn) {
-            languageBtn.textContent = this.t('languageLabel');
-            languageBtn.parentNode.innerHTML = `🌍 ${this.t('languageLabel')}: ${this.t('languages.' + this.currentLanguage)}`;
-        }
-        
+        // Note: This is handled by updateDropdownButton() function, so we don't need to do it here
+
+        // Update dynamic content that doesn't have data-translate attributes
+        this.updateDynamicContent();
+
         // Update variant UI if analytics exists
         if (window.analytics) {
             window.analytics.updateVariantUI(window.analytics.sessionData.variant);
+        }
+    }
+
+    updateDynamicContent() {
+        // Update hero content based on current variant
+        const heroHeadline = document.getElementById('hero-headline');
+        const heroSubline = document.getElementById('hero-subline');
+
+        if (heroHeadline && heroSubline && window.analytics && window.analytics.sessionData) {
+            const variant = window.analytics.sessionData.variant;
+            if (variant === 'A') {
+                heroHeadline.textContent = this.t('heroHeadlineA');
+                heroSubline.textContent = this.t('heroSublineA');
+            } else if (variant === 'B') {
+                heroHeadline.textContent = this.t('heroHeadlineB');
+                heroSubline.textContent = this.t('heroSublineB');
+            }
+        }
+
+        // Update pack content in capture page if age is selected
+        const packTitle = document.getElementById('pack-title');
+        const packContents = document.getElementById('pack-contents');
+
+        if (packTitle && packContents && window.analytics && window.analytics.sessionData) {
+            const age = window.analytics.sessionData.ageSelected;
+            if (age === '4-6') {
+                packTitle.textContent = this.t('starterPack46');
+                packContents.innerHTML = `
+                    <div class="pack-item" style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px;">
+                        <div class="icon" style="font-size: 1.5em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #FF8A95, #FFB3BA); border-radius: 50%;">🐱</div>
+                        <span style="font-weight: 500; color: #2c3e50;">${this.t('pack46Item1')}</span>
+                    </div>
+                    <div class="pack-item" style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px;">
+                        <div class="icon" style="font-size: 1.5em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #FF8A95, #FFB3BA); border-radius: 50%;">🌈</div>
+                        <span style="font-weight: 500; color: #2c3e50;">${this.t('pack46Item2')}</span>
+                    </div>
+                    <div class="pack-item" style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px;">
+                        <div class="icon" style="font-size: 1.5em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #FF8A95, #FFB3BA); border-radius: 50%;">🏃‍♂️</div>
+                        <span style="font-weight: 500; color: #2c3e50;">${this.t('pack46Item3')}</span>
+                    </div>
+                    <div class="pack-item" style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                        <div class="icon" style="font-size: 1.5em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #FF8A95, #FFB3BA); border-radius: 50%;">📖</div>
+                        <span style="font-weight: 500; color: #2c3e50;">${this.t('pack46Item4')}</span>
+                    </div>
+                `;
+            } else if (age === '7-10') {
+                packTitle.textContent = this.t('starterPack710');
+                packContents.innerHTML = `
+                    <div class="pack-item" style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px;">
+                        <div class="icon" style="font-size: 1.5em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #FF8A95, #FFB3BA); border-radius: 50%;">📝</div>
+                        <span style="font-weight: 500; color: #2c3e50;">${this.t('pack710Item1')}</span>
+                    </div>
+                    <div class="pack-item" style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px;">
+                        <div class="icon" style="font-size: 1.5em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #FF8A95, #FFB3BA); border-radius: 50%;">⚡</div>
+                        <span style="font-weight: 500; color: #2c3e50;">${this.t('pack710Item2')}</span>
+                    </div>
+                    <div class="pack-item" style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px;">
+                        <div class="icon" style="font-size: 1.5em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #FF8A95, #FFB3BA); border-radius: 50%;">🔤</div>
+                        <span style="font-weight: 500; color: #2c3e50;">${this.t('pack710Item3')}</span>
+                    </div>
+                    <div class="pack-item" style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                        <div class="icon" style="font-size: 1.5em; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #FF8A95, #FFB3BA); border-radius: 50%;">🎯</div>
+                        <span style="font-weight: 500; color: #2c3e50;">${this.t('pack710Item4')}</span>
+                    </div>
+                `;
+            }
+        }
+
+        // Update age selection text in thankyou page
+        const selectedAgeText = document.getElementById('selected-age-text');
+        if (selectedAgeText && window.analytics && window.analytics.sessionData) {
+            const age = window.analytics.sessionData.ageSelected;
+            if (age) {
+                selectedAgeText.textContent = this.t('gamesReadyAge', { age: age });
+            }
+        }
+
+        // Update button texts that might be dynamically changed
+        const submitBtn = document.getElementById('submit-btn');
+        if (submitBtn && submitBtn.textContent && (submitBtn.textContent === '📧 Wird gesendet...' || submitBtn.textContent === '📧 Sending...')) {
+            submitBtn.textContent = this.t('sending');
+        }
+
+        // Update selection text in chooser
+        const selectionText = document.getElementById('selection-text');
+        if (selectionText && window.analytics && window.analytics.sessionData) {
+            const age = window.analytics.sessionData.ageSelected;
+            if (age) {
+                selectionText.textContent = this.t('ageSpecificText', { age: age });
+            }
+        }
+
+        // Update variant buttons specifically
+        const variantBtns = document.querySelectorAll('.variant-btn');
+        variantBtns.forEach(btn => {
+            const translateAttr = btn.getAttribute('data-translate');
+            if (translateAttr) {
+                btn.textContent = this.t(translateAttr);
+            }
+        });
+
+        // Update hypothesis status text if it exists
+        const hypothesisStatus = document.getElementById('hypothesis-status');
+        if (hypothesisStatus && window.analytics && window.analytics.sessionData) {
+            const analytics = window.analytics.sessionData;
+            const captureViews = analytics.screens.capture || 1;
+            const emailSubmits = analytics.clicks.emailSubmit || 0;
+            const submitRate = (emailSubmits / captureViews) * 100;
+
+            if (submitRate >= 12) {
+                hypothesisStatus.textContent = this.t('hypothesisExcellent', { rate: submitRate.toFixed(1) });
+                hypothesisStatus.style.color = '#4CAF50';
+            } else if (submitRate >= 8) {
+                hypothesisStatus.textContent = this.t('hypothesisConfirmed', { rate: submitRate.toFixed(1) });
+                hypothesisStatus.style.color = '#FFC107';
+            } else {
+                hypothesisStatus.textContent = this.t('hypothesisBelow', { rate: submitRate.toFixed(1) });
+                hypothesisStatus.style.color = '#ff6b6b';
+            }
         }
     }
 
@@ -790,8 +1086,18 @@ class LanguageSystem {
     }
 }
 
-// Global instance
-window.languageSystem = new LanguageSystem();
+// Global instance - create when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('📄 DOM loaded, creating Language System...');
+        window.languageSystem = new LanguageSystem();
+        console.log('✅ Language System created successfully');
+    });
+} else {
+    console.log('📄 DOM already loaded, creating Language System...');
+    window.languageSystem = new LanguageSystem();
+    console.log('✅ Language System created successfully');
+}
 
 // Close dropdown when clicking outside
 document.addEventListener('click', function(event) {

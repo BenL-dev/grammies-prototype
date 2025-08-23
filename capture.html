@@ -50,8 +50,8 @@
                 
                 <form id="email-form" class="email-form" onsubmit="submitEmail(event); return false;" style="margin-bottom: 30px;">
                     <div class="form-group">
-                        <input type="email" id="email-input" placeholder="Ihre E-Mail-Adresse" required>
-                        <input type="text" id="name-input" placeholder="Ihr Vorname (optional)">
+                        <input type="email" id="email-input" required>
+                        <input type="text" id="name-input">
                     </div>
                     
                     <button type="submit" class="cta-button primary large" id="submit-btn" data-translate="getStarterPack">
@@ -68,26 +68,7 @@
         </div>
     </div>
 
-    <!-- Analytics Panel -->
-    <div class="analytics-panel">
-        <h3>📊 Screen 4: Email Capture</h3>
-        <div class="metric">
-            <span class="label">Chooser → Capture CTR:</span>
-            <span class="value" id="ctr-chooser-capture">0%</span>
-        </div>
-        <div class="metric">
-            <span class="label">Email Submit Rate:</span>
-            <span class="value" id="email-submit-rate">0%</span>
-        </div>
-        <div class="metric">
-            <span class="label">🎯 Ziel:</span>
-            <span class="value">8-12% Submit</span>
-        </div>
-        <div class="metric">
-            <span class="label">Hauptkonversion:</span>
-            <span class="value">★ Kritischer Screen</span>
-        </div>
-    </div>
+
 
     <script src="analytics.js"></script>
     <script>

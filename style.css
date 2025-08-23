@@ -39,11 +39,13 @@ body {
 /* Variant Selector */
 .variant-selector {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    right: 10px;
     z-index: 1000;
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
 }
 
 .variant-btn {
@@ -586,8 +588,9 @@ h2 {
     flex-wrap: wrap;
 }
 
-/* Analytics Panel */
+/* Analytics Panel - Hidden for regular users */
 .analytics-panel {
+    display: none; /* Hidden for normal users */
     position: fixed;
     bottom: 20px;
     right: 20px;
