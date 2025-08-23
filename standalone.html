@@ -56,6 +56,40 @@
             align-items: flex-end;
         }
 
+        /* Mobile: A/B Buttons nach unten verschieben */
+        @media (max-width: 768px) {
+            .variant-selector {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .variant-btn {
+                padding: 10px 14px;
+                font-size: 13px;
+                min-width: 80px;
+                min-height: 44px; /* Touch-friendly */
+            }
+        }
+
+        /* Sehr kleine Bildschirme: Buttons noch kompakter */
+        @media (max-width: 480px) {
+            .variant-selector {
+                bottom: 15px;
+                right: 15px;
+                gap: 8px;
+            }
+
+            .variant-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+                min-width: 70px;
+                min-height: 40px;
+            }
+        }
+
         .variant-btn {
             padding: 8px 12px;
             background: rgba(255, 255, 255, 0.2);

@@ -735,6 +735,45 @@ class LanguageSystem {
                 z-index: 1001;
             }
 
+            /* Mobile: Sprachumschalter nach unten links */
+            @media (max-width: 768px) {
+                .language-dropdown {
+                    top: auto;
+                    bottom: 20px;
+                    left: 20px;
+                    right: auto;
+                }
+
+                .language-btn {
+                    padding: 12px 16px;
+                    font-size: 14px;
+                    min-width: 44px;
+                    min-height: 44px;
+                }
+
+                .language-options {
+                    left: 0;
+                    right: auto;
+                    margin-top: 8px;
+                    margin-left: 0;
+                }
+            }
+
+            /* Sehr kleine Bildschirme */
+            @media (max-width: 480px) {
+                .language-dropdown {
+                    bottom: 15px;
+                    left: 15px;
+                }
+
+                .language-btn {
+                    padding: 10px 14px;
+                    font-size: 13px;
+                    min-width: 40px;
+                    min-height: 40px;
+                }
+            }
+
             .language-dropdown {
                 position: relative;
             }

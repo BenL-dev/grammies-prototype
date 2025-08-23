@@ -141,6 +141,9 @@ h3 {
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
+    min-width: 100px;
+    min-height: 44px;
+    touch-action: manipulation; /* Bessere Touch-Performance */
 }
 
 .back-btn:hover {
@@ -390,6 +393,40 @@ h3 {
     align-items: flex-end;
 }
 
+/* Mobile: A/B Buttons nach unten verschieben */
+@media (max-width: 768px) {
+    .variant-selector {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .variant-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+        min-width: 80px;
+        min-height: 44px; /* Touch-friendly */
+    }
+}
+
+/* Sehr kleine Bildschirme: Buttons noch kompakter */
+@media (max-width: 480px) {
+    .variant-selector {
+        bottom: 15px;
+        right: 15px;
+        gap: 8px;
+    }
+
+    .variant-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        min-width: 70px;
+        min-height: 40px;
+    }
+}
+
 .variant-btn {
     padding: 8px 12px;
     background: rgba(255, 255, 255, 0.2);
@@ -400,6 +437,8 @@ h3 {
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
+    touch-action: manipulation;
+    user-select: none; /* Verhindert Text-Auswahl auf Touch */
 }
 
 .variant-btn:hover,
@@ -449,50 +488,90 @@ h3 {
 }
 
 /* Responsive Design */
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .hero-content {
+        gap: 80px !important;
+    }
+
+    h1 {
+        font-size: 3.5em;
+    }
+}
+
+/* Medium Desktop/Tablet Landscape */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .container {
+        max-width: 1100px;
+    }
+
+    .hero-content {
+        gap: 60px !important;
+    }
+}
+
+/* Tablet Portrait */
 @media (max-width: 768px) {
     .container {
         padding: 0 15px;
     }
-    
+
     h1 {
         font-size: 2.4em;
     }
-    
+
     h2 {
         font-size: 2em;
     }
-    
+
     .hero-content {
         grid-template-columns: 1fr !important;
         gap: 40px !important;
         text-align: center;
     }
-    
+
     .value-props {
         grid-template-columns: 1fr;
         gap: 15px;
     }
-    
+
     .age-options {
         grid-template-columns: 1fr;
         gap: 20px;
     }
-    
+
+    /* Back-Button für mobile optimieren */
+    .back-btn {
+        min-width: 120px;
+        min-height: 44px;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    /* Cards für mobile optimieren */
+    .card, .age-card {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+    }
+
+    /* Buttons touch-friendly machen */
+    .cta-button {
+        min-height: 48px;
+        min-width: 200px;
+        font-size: 16px;
+        padding: 12px 24px;
+    }
+
+    /* Trust indicators vertikal anordnen */
     .trust-indicators {
         flex-direction: column;
         gap: 15px;
-    }
-    
-    .variant-selector {
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .analytics-panel {
-        position: relative;
-        margin: 20px;
-        bottom: auto;
-        right: auto;
     }
 }
 
@@ -500,11 +579,25 @@ h3 {
     h1 {
         font-size: 2em;
     }
-    
-    .screen {
-        padding: 20px 0;
+
+    h2 {
+        font-size: 1.6em;
     }
-    
+
+    .screen {
+        padding: 15px 0;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    /* Hero section für sehr kleine Bildschirme */
+    .hero-content {
+        gap: 30px !important;
+    }
+
+    /* Cards für sehr kleine Bildschirme optimieren */
     .card,
     .age-card,
     .confirmation-details {
