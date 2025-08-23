@@ -137,18 +137,11 @@ class PrototypeAnalytics {
             }
         });
 
-        // Update content based on variant
-        const headline = document.getElementById('hero-headline');
-        const subline = document.getElementById('hero-subline');
-        
-        if (headline && subline) {
-            if (variant === 'A') {
-                headline.textContent = '10-Minuten Grammatik-Games';
-                subline.textContent = 'Spielerisch, multisensorisch, kurz und strukturiert - Grammatik lernen war noch nie so einfach!';
-            } else if (variant === 'B') {
-                headline.textContent = 'Multisensorische Grammatik für zu Hause';
-                subline.textContent = 'Interaktive Lernmethoden für eine ganzheitliche Sprachentwicklung Ihres Kindes!';
-            }
+        // Update content based on variant - use language system for translations
+        if (window.languageSystem && window.languageSystem.updateDynamicContent) {
+            window.languageSystem.updateDynamicContent();
+        } else {
+            console.log('Language system not ready for variant update');
         }
     }
 
@@ -224,10 +217,14 @@ class PrototypeAnalytics {
     navigateWithTracking(url, trackAction, trackData = {}) {
         this.trackClick(trackAction, trackData);
         
+        // Preserve language selection in navigation
+        const currentLang = window.languageSystem ? window.languageSystem.currentLanguage : 'de';
+        const separator = url.includes('?') ? '&' : '?';
+        url += `${separator}lang=${currentLang}`;
+        
         // Add variant to URL if not default
         if (this.sessionData.variant !== 'A') {
-            const separator = url.includes('?') ? '&' : '?';
-            url += `${separator}variant=${this.sessionData.variant}`;
+            url += `&variant=${this.sessionData.variant}`;
         }
         
         window.location.href = url;

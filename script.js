@@ -52,13 +52,12 @@ function setVariant(variant) {
     });
     document.querySelector(`[onclick="setVariant('${variant}')"]`).classList.add('active');
     
-    // Update content based on variant
-    if (variant === 'A') {
-        document.getElementById('hero-headline').textContent = '10-Minuten Grammatik-Games';
-        document.getElementById('hero-subline').textContent = 'Spielerisch, multisensorisch, kurz und strukturiert - Grammatik lernen war noch nie so einfach!';
-    } else if (variant === 'B') {
-        document.getElementById('hero-headline').textContent = 'Multisensorische Grammatik für zu Hause';
-        document.getElementById('hero-subline').textContent = 'Interaktive Lernmethoden für eine ganzheitliche Sprachentwicklung Ihres Kindes!';
+    // Update content based on variant - use language system for translations
+    if (window.languageSystem && window.languageSystem.updateDynamicContent) {
+        window.languageSystem.updateDynamicContent();
+    } else {
+        // Fallback if language system is not ready
+        console.log('Language system not ready, content will be updated when language system loads');
     }
     
     // Update analytics display
@@ -172,7 +171,7 @@ function submitEmail(event) {
     
     // Validate email
     if (!emailInput.value || !emailInput.value.includes('@')) {
-        alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+        alert(window.languageSystem.t('validEmailRequired'));
         return;
     }
     
@@ -293,7 +292,7 @@ function updateAnalyticsDisplay() {
 
 // Additional Features
 function showMoreGames() {
-    alert('🎮 Hier würden weitere Spiele gezeigt werden...\n\nIn der echten App:\n• Zusätzliche Game-Pakete\n• Premium-Inhalte\n• Personalisierte Empfehlungen');
+    alert(window.languageSystem.t('additionalGamesMessage'));
     trackClick('more-games-modal-viewed');
 }
 

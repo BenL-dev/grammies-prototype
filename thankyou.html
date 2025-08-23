@@ -83,26 +83,7 @@
         </div>
     </div>
 
-    <!-- Analytics Panel -->
-    <div class="analytics-panel">
-        <h3>📊 Screen 5: Thank You</h3>
-        <div class="metric">
-            <span class="label">🏆 Journey Complete:</span>
-            <span class="value">✓ Email Submitted</span>
-        </div>
-        <div class="metric">
-            <span class="label">Email Submit Rate:</span>
-            <span class="value" id="email-submit-rate">0%</span>
-        </div>
-        <div class="metric">
-            <span class="label">Hypothese erfüllt:</span>
-            <span class="value" id="hypothesis-result">Testend...</span>
-        </div>
-        <div class="metric">
-            <span class="label">Actions:</span>
-            <span class="value">Mehr | Restart</span>
-        </div>
-    </div>
+
 
     <script src="analytics.js"></script>
     <script>
@@ -161,18 +142,18 @@
         
         function showMoreGames() {
             trackClick('more-games');
-            alert('🎮 Mehr Spiele Feature!\n\nIn der echten Anwendung:\n• Zusätzliche Game-Pakete\n• Premium-Inhalte\n• Alters-spezifische Empfehlungen\n• Community-Features\n\nDies würde zu einem erweiterten Katalog führen.');
+            alert(window.languageSystem.t('moreGamesFeature'));
         }
         
         function restartJourney() {
             trackClick('restart');
-            
-            const confirmRestart = confirm('🔄 Journey neu starten?\n\nDies wird:\n• Die Analytics zurücksetzen\n• Eine neue Session starten\n• Zurück zum Hero Screen führen\n\nFortfahren?');
-            
+
+            const confirmRestart = confirm(window.languageSystem.t('restartJourneyConfirm'));
+
             if (confirmRestart) {
                 // Reset analytics
                 window.analytics.resetSession();
-                
+
                 // Navigate back to start
                 window.location.href = 'index.html';
             }

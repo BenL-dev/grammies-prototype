@@ -39,11 +39,47 @@ body {
 /* Variant Selector */
 .variant-selector {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    right: 10px;
     z-index: 1000;
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+/* Mobile: A/B Buttons nach unten verschieben */
+@media (max-width: 768px) {
+    .variant-selector {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .variant-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+        min-width: 80px;
+        min-height: 44px; /* Touch-friendly */
+    }
+}
+
+/* Sehr kleine Bildschirme: Buttons noch kompakter */
+@media (max-width: 480px) {
+    .variant-selector {
+        bottom: 15px;
+        right: 15px;
+        gap: 8px;
+    }
+
+    .variant-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+        min-width: 70px;
+        min-height: 40px;
+    }
 }
 
 .variant-btn {
@@ -586,8 +622,9 @@ h2 {
     flex-wrap: wrap;
 }
 
-/* Analytics Panel */
+/* Analytics Panel - Hidden for regular users */
 .analytics-panel {
+    display: none; /* Hidden for normal users */
     position: fixed;
     bottom: 20px;
     right: 20px;

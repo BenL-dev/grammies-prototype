@@ -47,11 +47,47 @@
         /* Variant Selector */
         .variant-selector {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 10px;
+            right: 10px;
             z-index: 1000;
             display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        /* Mobile: A/B Buttons nach unten verschieben */
+        @media (max-width: 768px) {
+            .variant-selector {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .variant-btn {
+                padding: 10px 14px;
+                font-size: 13px;
+                min-width: 80px;
+                min-height: 44px; /* Touch-friendly */
+            }
+        }
+
+        /* Sehr kleine Bildschirme: Buttons noch kompakter */
+        @media (max-width: 480px) {
+            .variant-selector {
+                bottom: 15px;
+                right: 15px;
+                gap: 8px;
+            }
+
+            .variant-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+                min-width: 70px;
+                min-height: 40px;
+            }
         }
 
         .variant-btn {
@@ -272,8 +308,9 @@
         .color-dot.blue { background: #4ecdc4; }
         .color-dot.green { background: #45b7d1; }
 
-        /* Analytics Panel */
+        /* Analytics Panel - Hidden for regular users */
         .analytics-panel {
+            display: none; /* Hidden for normal users */
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -428,22 +465,7 @@
         </div>
     </section>
 
-    <!-- Analytics Panel -->
-    <div class="analytics-panel">
-        <h3>📊 Prototype Analytics</h3>
-        <div class="metric">
-            <span class="label">Button Clicks:</span>
-            <span class="value" id="button-clicks">0</span>
-        </div>
-        <div class="metric">
-            <span class="label">Current Variant:</span>
-            <span class="value" id="current-variant">A</span>
-        </div>
-        <div class="metric">
-            <span class="label">Status:</span>
-            <span class="value" style="color: #4CAF50;">✓ Funktioniert</span>
-        </div>
-    </div>
+
 
     <script>
         let buttonClicks = 0;
@@ -462,12 +484,18 @@
             const headline = document.getElementById('hero-headline');
             const subline = document.getElementById('hero-subline');
             
-            if (variant === 'A') {
-                headline.textContent = '10-Minuten Grammatik-Games';
-                subline.textContent = 'Spielerisch, multisensorisch, kurz und strukturiert - Grammatik lernen war noch nie so einfach!';
+            // Update content using language system if available
+            if (window.languageSystem && window.languageSystem.updateDynamicContent) {
+                window.languageSystem.updateDynamicContent();
             } else {
-                headline.textContent = 'Multisensorische Grammatik für zu Hause';
-                subline.textContent = 'Interaktive Lernmethoden für eine ganzheitliche Sprachentwicklung Ihres Kindes!';
+                // Fallback translations
+                if (variant === 'A') {
+                    headline.textContent = '10-Minuten Grammatik-Games';
+                    subline.textContent = 'Spielerisch, multisensorisch, kurz und strukturiert - Grammatik lernen war noch nie so einfach!';
+                } else {
+                    headline.textContent = 'Multisensorische Grammatik für zu Hause';
+                    subline.textContent = 'Interaktive Lernmethoden für eine ganzheitliche Sprachentwicklung Ihres Kindes!';
+                }
             }
             
             document.getElementById('current-variant').textContent = variant;
