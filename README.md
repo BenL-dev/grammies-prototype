@@ -1,5 +1,6 @@
 # Grammar Games - Clickable Prototype
 
+Open here https://benl-dev.github.io/grammies-prototype/
 Ein vollständig funktionsfähiger Clickable Prototype für das Grammar Games Experiment, basierend auf der spezifizierten Hypothese und Roadmap.
 
 ## 🎯 Primäre Hypothese (H1)
