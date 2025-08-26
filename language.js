@@ -730,9 +730,10 @@ class LanguageSystem {
         style.textContent = `
             .language-selector {
                 position: fixed;
-                top: 10px;
-                right: 120px;
-                z-index: 1001;
+                top: 24px;
+                left: 24px;
+                right: auto;
+                z-index: 1000;
             }
 
             /* Mobile: Sprachumschalter nach unten links */
