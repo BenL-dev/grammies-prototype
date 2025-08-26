@@ -487,6 +487,38 @@ h3 {
     color: #FF8A95;
 }
 
+/* Language Selector */
+.language-selector {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+}
+
+.language-buttons {
+    display: inline-flex;
+    gap: 8px;
+    background: white;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lang-btn {
+    padding: 4px 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.lang-btn.active {
+    background: #f0f0f0;
+}
+
 /* Responsive Design */
 
 /* Large Desktop */
