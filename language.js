@@ -692,6 +692,18 @@ class LanguageSystem {
     }
 
     initializeLanguageSystem() {
+        // Create language selector
+        const languageSelector = document.createElement('div');
+        languageSelector.className = 'language-selector';
+        languageSelector.innerHTML = `
+            <div class="language-buttons">
+                <button onclick="languageSystem.changeLanguage('de')" class="lang-btn ${this.currentLanguage === 'de' ? 'active' : ''}">DE</button>
+                <button onclick="languageSystem.changeLanguage('en')" class="lang-btn ${this.currentLanguage === 'en' ? 'active' : ''}">EN</button>
+                <button onclick="languageSystem.changeLanguage('zh')" class="lang-btn ${this.currentLanguage === 'zh' ? 'active' : ''}">中文</button>
+            </div>
+        `;
+        document.body.insertBefore(languageSelector, document.body.firstChild);
+
         try {
             console.log('🚀 Initializing Language System...');
             this.addLanguageSelector();
@@ -729,7 +741,7 @@ class LanguageSystem {
         const style = document.createElement('style');
         style.textContent = `
             .language-selector {
-                position: fixed;
+                position: absolute;
                 top: 24px;
                 left: 24px;
                 right: auto;
