@@ -494,29 +494,63 @@ h3 {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    text-align: center;
 }
 
-.language-buttons {
-    display: inline-flex;
-    gap: 8px;
+.language-dropdown {
+    position: relative;
+}
+
+.language-btn {
+    background: linear-gradient(45deg, #FF8A95, #FFB3BA);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 138, 149, 0.3);
+}
+
+.language-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 138, 149, 0.4);
+}
+
+.language-options {
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
     background: white;
+    border-radius: 15px;
     padding: 8px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+    min-width: 150px;
 }
 
-.lang-btn {
-    padding: 4px 8px;
+.language-options button {
+    width: 100%;
+    padding: 10px 15px;
     border: none;
     background: transparent;
+    color: #2c3e50;
+    font-size: 1em;
     cursor: pointer;
-    border-radius: 4px;
-    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    text-align: left;
 }
 
-.lang-btn.active {
-    background: #f0f0f0;
+.language-options button:hover {
+    background: rgba(255, 138, 149, 0.1);
+}
+
+.language-options button.active {
+    background: linear-gradient(45deg, #FF8A95, #FFB3BA);
+    color: white;
 }
 
 /* Responsive Design */

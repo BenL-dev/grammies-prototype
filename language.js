@@ -692,20 +692,12 @@ class LanguageSystem {
     }
 
     initializeLanguageSystem() {
-        // Create language selector
-        const languageSelector = document.createElement('div');
-        languageSelector.className = 'language-selector';
-        languageSelector.innerHTML = `
-            <div class="language-buttons">
-                <button onclick="languageSystem.changeLanguage('de')" class="lang-btn ${this.currentLanguage === 'de' ? 'active' : ''}">DE</button>
-                <button onclick="languageSystem.changeLanguage('en')" class="lang-btn ${this.currentLanguage === 'en' ? 'active' : ''}">EN</button>
-                <button onclick="languageSystem.changeLanguage('zh')" class="lang-btn ${this.currentLanguage === 'zh' ? 'active' : ''}">中文</button>
-            </div>
-        `;
-        document.body.insertBefore(languageSelector, document.body.firstChild);
-
         try {
             console.log('🚀 Initializing Language System...');
+            // Remove any existing language selectors first
+            const existingSelectors = document.querySelectorAll('.language-selector');
+            existingSelectors.forEach(selector => selector.remove());
+            
             this.addLanguageSelector();
             this.updatePageContent();
             console.log(`🌍 Language system initialized: ${this.currentLanguage}`);
@@ -715,170 +707,31 @@ class LanguageSystem {
     }
 
     addLanguageSelector() {
-        // Create language selector HTML - simplified version for debugging
         const languageSelector = document.createElement('div');
         languageSelector.className = 'language-selector';
         languageSelector.innerHTML = `
-            <div class="language-dropdown" style="position: fixed; top: 20px; right: 20px; z-index: 1001;">
-                <button class="language-btn" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';" style="padding: 12px 18px; background: rgba(255, 255, 255, 0.15); color: white; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 25px; font-size: 14px; cursor: pointer;">
+            <div class="language-dropdown">
+                <button class="language-btn" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block';">
                     🌍 ${this.t('languages.' + this.currentLanguage)}
                 </button>
-                <div class="language-options" style="display: none; position: absolute; top: 100%; right: 0; background: rgba(255, 255, 255, 0.95); border-radius: 15px; padding: 10px; min-width: 160px; margin-top: 8px;">
-                    <button onclick="console.log('German clicked'); window.languageSystem.changeLanguage('de')" style="display: block; width: 100%; padding: 12px 16px; border: none; background: none; color: #2c3e50; cursor: pointer; border-radius: 10px; text-align: left; font-size: 14px;" class="${this.currentLanguage === 'de' ? 'active' : ''}">
+                <div class="language-options" style="display: none;">
+                    <button onclick="window.languageSystem.changeLanguage('de')" class="${this.currentLanguage === 'de' ? 'active' : ''}">
                         🇩🇪 ${this.t('languages.de')}
                     </button>
-                    <button onclick="console.log('English clicked'); window.languageSystem.changeLanguage('en')" style="display: block; width: 100%; padding: 12px 16px; border: none; background: none; color: #2c3e50; cursor: pointer; border-radius: 10px; text-align: left; font-size: 14px;" class="${this.currentLanguage === 'en' ? 'active' : ''}">
+                    <button onclick="window.languageSystem.changeLanguage('en')" class="${this.currentLanguage === 'en' ? 'active' : ''}">
                         🇬🇧 ${this.t('languages.en')}
                     </button>
-                    <button onclick="console.log('Chinese clicked'); window.languageSystem.changeLanguage('zh')" style="display: block; width: 100%; padding: 12px 16px; border: none; background: none; color: #2c3e50; cursor: pointer; border-radius: 10px; text-align: left; font-size: 14px;" class="${this.currentLanguage === 'zh' ? 'active' : ''}">
+                    <button onclick="window.languageSystem.changeLanguage('zh')" class="${this.currentLanguage === 'zh' ? 'active' : ''}">
                         🇨🇳 ${this.t('languages.zh')}
                     </button>
                 </div>
             </div>
         `;
 
-        // Add CSS for language selector
-        const style = document.createElement('style');
-        style.textContent = `
-            .language-selector {
-                position: absolute;
-                top: 24px;
-                left: 24px;
-                right: auto;
-                z-index: 1000;
-            }
-
-            /* Mobile: Sprachumschalter nach unten links */
-            @media (max-width: 768px) {
-                .language-dropdown {
-                    top: auto;
-                    bottom: 20px;
-                    left: 20px;
-                    right: auto;
-                }
-
-                .language-btn {
-                    padding: 12px 16px;
-                    font-size: 14px;
-                    min-width: 44px;
-                    min-height: 44px;
-                }
-
-                .language-options {
-                    left: 0;
-                    right: auto;
-                    margin-top: 8px;
-                    margin-left: 0;
-                }
-            }
-
-            /* Sehr kleine Bildschirme */
-            @media (max-width: 480px) {
-                .language-dropdown {
-                    bottom: 15px;
-                    left: 15px;
-                }
-
-                .language-btn {
-                    padding: 10px 14px;
-                    font-size: 13px;
-                    min-width: 40px;
-                    min-height: 40px;
-                }
-            }
-
-            .language-dropdown {
-                position: relative;
-            }
-
-            .language-btn {
-                padding: 12px 18px;
-                background: rgba(255, 255, 255, 0.15);
-                color: white;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                border-radius: 25px;
-                font-size: 14px;
-                font-weight: 500;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                backdrop-filter: blur(15px);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-                font-family: 'Poppins', sans-serif;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-            .language-btn:hover {
-                background: rgba(255, 255, 255, 0.25);
-                border-color: rgba(255, 255, 255, 0.4);
-                box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-                transform: translateY(-2px);
-            }
-
-            .language-options {
-                position: absolute;
-                top: 100%;
-                right: 0;
-                background: rgba(255, 255, 255, 0.95);
-                border-radius: 15px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-                backdrop-filter: blur(20px);
-                padding: 10px;
-                min-width: 160px;
-                display: none;
-                margin-top: 8px;
-                z-index: 1002;
-                border: 1px solid rgba(255, 255, 255, 0.3);
-            }
-
-            .language-options.open {
-                display: block;
-                animation: fadeInUp 0.3s ease;
-            }
-
-            @keyframes fadeInUp {
-                from { opacity: 0; transform: translateY(10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-
-            .language-options button {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                width: 100%;
-                padding: 12px 16px;
-                border: none;
-                background: none;
-                color: #2c3e50;
-                cursor: pointer;
-                border-radius: 10px;
-                text-align: left;
-                font-size: 14px;
-                font-weight: 500;
-                font-family: 'Poppins', sans-serif;
-                transition: all 0.2s ease;
-            }
-
-            .language-options button:hover {
-                background: rgba(102, 126, 234, 0.1);
-                transform: translateX(2px);
-            }
-
-            .language-options button.active {
-                background: linear-gradient(45deg, #667eea, #764ba2);
-                color: white;
-                transform: translateX(2px);
-                box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Insert language selector into page (wait for DOM to be ready)
+        // Insert language selector into page
         if (document.body) {
             document.body.insertBefore(languageSelector, document.body.firstChild);
         } else {
-            // Wait for DOM to be ready
             document.addEventListener('DOMContentLoaded', () => {
                 document.body.insertBefore(languageSelector, document.body.firstChild);
             });
