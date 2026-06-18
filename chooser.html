@@ -19,14 +19,14 @@
     <div class="screen">
         <div class="container">
             <div class="back-nav">
-                <a href="#" onclick="navigateWithTracking('preview.html', 'back-click'); return false;" class="back-btn" data-translate="backButton">← Zurück</a>
+                <a href="#" onclick="handleMobileClick('preview.html', 'back-click'); return false;" class="back-btn" data-translate="backButton">← Zurück</a>
             </div>
             
             <h2 data-translate="ageQuestion">Wie alt ist Ihr Kind?</h2>
             <p class="subtitle" data-translate="ageSubtitle">Wir zeigen Ihnen die passenden Grammar Games</p>
             
             <div class="age-options">
-                <a href="#" class="age-card" onclick="selectAge('4-6'); return false;" data-age="4-6">
+                <div class="age-card" data-age="4-6">
                     <div class="age-range" data-translate="age46">4-6 Jahre</div>
                     <div class="age-description" data-translate="age46Desc">Spielerische Grundlagen</div>
                     <div class="example-games">
@@ -37,9 +37,9 @@
                             <li data-translate="age46Game3">🏃‍♂️ Action-Verben</li>
                         </ul>
                     </div>
-                </a>
+                </div>
                 
-                <a href="#" class="age-card" onclick="selectAge('7-10'); return false;" data-age="7-10">
+                <div class="age-card" data-age="7-10">
                     <div class="age-range" data-translate="age710">7-10 Jahre</div>
                     <div class="age-description" data-translate="age710Desc">Strukturierte Grammatik</div>
                     <div class="example-games">
@@ -50,7 +50,7 @@
                             <li data-translate="age710Game3">🔤 Wortarten-Memory</li>
                         </ul>
                     </div>
-                </a>
+                </div>
             </div>
 
             <!-- Selection feedback -->
@@ -70,32 +70,150 @@
 
     <script src="analytics.js"></script>
     <script>
-        function selectAge(age) {
+        function selectAge(age, event) {
+            // Prevent default behavior
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
             // Track age selection
             trackClick('age-selected', { age: age });
-            
+
             // Visual feedback
             document.querySelectorAll('.age-card').forEach(card => {
                 card.style.opacity = '0.5';
+                card.style.transform = 'scale(1)';
             });
-            
-            event.target.closest('.age-card').style.opacity = '1';
-            event.target.closest('.age-card').style.border = '3px solid #FF8A95';
-            event.target.closest('.age-card').style.transform = 'scale(1.02)';
-            
+
+            // Find the clicked card
+            let targetCard;
+            if (event && event.target) {
+                targetCard = event.target.closest('.age-card');
+            } else {
+                // Fallback: find card by age attribute
+                targetCard = document.querySelector(`.age-card[data-age="${age}"]`);
+            }
+
+            if (targetCard) {
+                targetCard.style.opacity = '1';
+                targetCard.style.border = '3px solid #FF8A95';
+                targetCard.style.transform = 'scale(1.02)';
+            }
+
             // Show feedback
             const feedback = document.getElementById('selection-feedback');
             const selectionText = document.getElementById('selection-text');
-            
+
             feedback.style.display = 'block';
             selectionText.textContent = window.languageSystem.t('ageSpecificText', { age: age });
-            
+
             // Auto-advance after 2 seconds
             setTimeout(() => {
                 const captureUrl = `capture.html?age=${age}`;
                 navigateWithTracking(captureUrl, 'chooser-to-capture', { age: age });
             }, 2000);
         }
+
+        // Simple mobile-friendly click handler
+        function handleMobileClick(url, action, data = {}) {
+            console.log('🎯 handleMobileClick called:', { url, action, data });
+
+            try {
+                // Ensure navigateWithTracking function exists
+                if (typeof navigateWithTracking === 'function') {
+                    console.log('✅ navigateWithTracking found, calling...');
+                    navigateWithTracking(url, action, data);
+                } else {
+                    console.log('⚠️ navigateWithTracking not found, using fallback...');
+                    // Fallback navigation
+                    if (data.age) {
+                        window.location.href = `${url}?age=${data.age}`;
+                    } else {
+                        window.location.href = url;
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Error in handleMobileClick:', error);
+                // Emergency fallback
+                window.location.href = url;
+            }
+        }
+
+        // Enhanced mobile touch support
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prevent zoom on input focus on iOS
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+            }
+
+            // Add touch event listeners for better mobile support
+            document.querySelectorAll('.age-card').forEach(card => {
+                // Handle touchstart for immediate feedback
+                card.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.style.transform = 'scale(0.98)';
+                    this.style.transition = 'transform 0.1s ease';
+                }, { passive: false });
+
+                // Handle touchend
+                card.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.style.transform = 'scale(1)';
+                    this.style.transition = 'transform 0.2s ease';
+
+                    // Small delay to allow visual feedback
+                    setTimeout(() => {
+                        const age = this.getAttribute('data-age');
+                        selectAge(age, e);
+                    }, 50);
+                }, { passive: false });
+
+                // Prevent default touch behavior during move
+                card.addEventListener('touchmove', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }, { passive: false });
+
+                // Handle touchcancel
+                card.addEventListener('touchcancel', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(1)';
+                    this.style.transition = 'transform 0.2s ease';
+                }, { passive: false });
+            });
+
+            // Add click event as fallback for desktop
+            document.querySelectorAll('.age-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const age = this.getAttribute('data-age');
+                    selectAge(age, e);
+                });
+            });
+
+            // Prevent context menu on long press
+            document.addEventListener('contextmenu', function(e) {
+                if (e.target.closest('.age-card')) {
+                    e.preventDefault();
+                }
+            });
+
+            // Handle orientation change
+            window.addEventListener('orientationchange', function() {
+                // Small delay to allow orientation change to complete
+                setTimeout(function() {
+                    // Reset any stuck transforms
+                    document.querySelectorAll('.age-card').forEach(card => {
+                        card.style.transform = 'scale(1)';
+                    });
+                }, 100);
+            });
+        });
     </script>
 </body>
 </html>

@@ -49,10 +49,13 @@ class PrototypeAnalytics {
     initializeTracking() {
         // Track page load
         this.trackScreenView(this.getCurrentScreen());
-        
+
         // Display analytics if panel exists
         this.updateAnalyticsDisplay();
-        
+
+        // Initialize mobile button handling
+        this.initializeMobileButtons();
+
         console.log('📊 Analytics initialized for session:', this.sessionData.sessionId);
     }
 
@@ -237,6 +240,29 @@ class PrototypeAnalytics {
         console.log('🔄 Analytics session reset');
         this.updateAnalyticsDisplay();
     }
+
+    // Enhanced mobile button handling - simplified approach
+    initializeMobileButtons() {
+        // Simple button enhancement - ensure buttons have proper mobile styles
+        const buttons = document.querySelectorAll('.back-btn, .cta-button, .variant-btn');
+
+        buttons.forEach(button => {
+            // Ensure buttons have mobile-friendly attributes
+            if (!button.hasAttribute('touch-action')) {
+                button.style.touchAction = 'manipulation';
+            }
+            if (!button.hasAttribute('tabindex')) {
+                button.setAttribute('tabindex', '0');
+            }
+
+            // Add a simple click handler as backup
+            button.addEventListener('click', function(e) {
+                console.log('🔘 Button clicked:', this.textContent.trim());
+            });
+        });
+
+        console.log('📱 Mobile button handling initialized');
+    }
 }
 
 // Global instance
@@ -246,6 +272,8 @@ window.analytics = new PrototypeAnalytics();
 window.trackClick = (action, data) => window.analytics.trackClick(action, data);
 window.setVariant = (variant) => window.analytics.setVariant(variant);
 window.navigateWithTracking = (url, action, data) => window.analytics.navigateWithTracking(url, action, data);
+
+// Mobile button initialization is handled by the analytics system
 
 // Initialize variant from URL parameter
 document.addEventListener('DOMContentLoaded', function() {
@@ -257,4 +285,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set to stored variant or default
         window.analytics.setVariant(window.analytics.sessionData.variant);
     }
+
+    // Ensure mobile buttons are initialized after a short delay
+    setTimeout(() => {
+        window.initializeMobileButtons();
+    }, 100);
+
+    // Simple event logging for debugging
+    document.addEventListener('click', function(e) {
+        const target = e.target;
+        if (target.tagName === 'A' || target.tagName === 'BUTTON' ||
+            target.classList.contains('back-btn') ||
+            target.classList.contains('cta-button') ||
+            target.classList.contains('variant-btn')) {
+            console.log('🔗 Navigation click detected:', target.textContent.trim());
+        }
+    });
 });

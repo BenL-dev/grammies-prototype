@@ -95,6 +95,9 @@ h3 {
     text-decoration: none;
     display: inline-block;
     text-align: center;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .cta-button.primary {
@@ -144,10 +147,14 @@ h3 {
     min-width: 100px;
     min-height: 44px;
     touch-action: manipulation; /* Bessere Touch-Performance */
+    user-select: none; /* Verhindert Text-Auswahl */
+    -webkit-tap-highlight-color: transparent; /* Entfernt iOS Tap-Highlight */
 }
 
 .back-btn:hover {
     background: rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    color: white;
 }
 
 /* Value Props */
@@ -273,6 +280,10 @@ h3 {
     border: 3px solid transparent;
     text-decoration: none;
     color: inherit;
+    min-height: 44px; /* Minimum touch target size */
+    touch-action: manipulation; /* Optimize for touch */
+    user-select: none; /* Prevent text selection */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
 }
 
 .age-card:hover {
@@ -391,6 +402,8 @@ h3 {
     flex-direction: column;
     gap: 8px;
     align-items: flex-end;
+    pointer-events: auto; /* Ensure it can receive pointer events */
+    touch-action: manipulation; /* Optimize for touch */
 }
 
 /* Mobile: A/B Buttons nach unten verschieben */
@@ -439,6 +452,8 @@ h3 {
     text-decoration: none;
     touch-action: manipulation;
     user-select: none; /* Verhindert Text-Auswahl auf Touch */
+    -webkit-tap-highlight-color: transparent; /* Entfernt iOS Tap-Highlight */
+    min-height: 44px; /* Adequate touch target */
 }
 
 .variant-btn:hover,
@@ -548,9 +563,11 @@ h3 {
     /* Back-Button für mobile optimieren */
     .back-btn {
         min-width: 120px;
-        min-height: 44px;
+        min-height: 48px; /* Increased for better touch target */
         font-size: 16px;
         margin-bottom: 20px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
 
     /* Cards für mobile optimieren */
@@ -558,6 +575,30 @@ h3 {
         padding: 25px 20px;
         margin-bottom: 20px;
         border-radius: 12px;
+        min-height: 48px; /* Ensure adequate touch target */
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Age cards - ensure proper touch targets on mobile */
+    .age-card {
+        min-height: 180px; /* Adequate height for touch */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        position: relative; /* Ensure proper z-index context */
+        z-index: 10; /* Higher than other elements */
+        pointer-events: auto; /* Ensure touch events work */
+        touch-action: manipulation; /* Optimize for touch */
+        -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
+    }
+
+    /* Remove hover effects on mobile */
+    .age-card:hover {
+        transform: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-color: transparent;
     }
 
     /* Buttons touch-friendly machen */
@@ -602,5 +643,22 @@ h3 {
     .age-card,
     .confirmation-details {
         padding: 20px;
+        min-height: 44px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Age cards on very small screens */
+    .age-card {
+        min-height: 160px; /* Adequate for very small screens */
+        padding: 20px 15px; /* Reduce padding slightly */
+    }
+
+    /* Ensure buttons are touch-friendly on very small screens */
+    .back-btn,
+    .cta-button {
+        min-height: 44px;
+        min-width: 44px;
+        font-size: 16px; /* Prevent zoom on iOS */
     }
 }

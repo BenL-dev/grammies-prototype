@@ -19,7 +19,7 @@
     <div class="screen">
         <div class="container">
             <div class="back-nav">
-                <a href="#" onclick="navigateWithTracking('chooser.html', 'back-click'); return false;" class="back-btn" data-translate="backButton">← Zurück</a>
+                <a href="#" onclick="handleMobileClick('chooser.html', 'back-click'); return false;" class="back-btn" data-translate="backButton">← Zurück</a>
             </div>
             
             <div class="capture-content" style="max-width: 600px; margin: 0 auto; text-align: center;">
@@ -158,6 +158,32 @@
                 // Navigate to thank you page
                 navigateWithTracking('thankyou.html', 'email-submitted');
             }, 1500);
+        }
+    </script>
+    <script>
+        // Simple mobile-friendly click handler
+        function handleMobileClick(url, action, data = {}) {
+            console.log('🎯 handleMobileClick called:', { url, action, data });
+
+            try {
+                // Ensure navigateWithTracking function exists
+                if (typeof navigateWithTracking === 'function') {
+                    console.log('✅ navigateWithTracking found, calling...');
+                    navigateWithTracking(url, action, data);
+                } else {
+                    console.log('⚠️ navigateWithTracking not found, using fallback...');
+                    // Fallback navigation
+                    if (data.age) {
+                        window.location.href = `${url}?age=${data.age}`;
+                    } else {
+                        window.location.href = url;
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Error in handleMobileClick:', error);
+                // Emergency fallback
+                window.location.href = url;
+            }
         }
     </script>
 </body>

@@ -7,12 +7,38 @@
     <link rel="stylesheet" href="shared.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="language.js"></script>
+    <script>
+        // Simple mobile-friendly click handler
+        function handleMobileClick(url, action, data = {}) {
+            console.log('🎯 handleMobileClick called:', { url, action, data });
+
+            try {
+                // Ensure navigateWithTracking function exists
+                if (typeof navigateWithTracking === 'function') {
+                    console.log('✅ navigateWithTracking found, calling...');
+                    navigateWithTracking(url, action, data);
+                } else {
+                    console.log('⚠️ navigateWithTracking not found, using fallback...');
+                    // Fallback navigation
+                    if (data.age) {
+                        window.location.href = `${url}?age=${data.age}`;
+                    } else {
+                        window.location.href = url;
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Error in handleMobileClick:', error);
+                // Emergency fallback
+                window.location.href = url;
+            }
+        }
+    </script>
 </head>
 <body>
     <!-- A/B Test Variant Selector -->
     <div class="variant-selector">
-        <a href="?variant=A" class="variant-btn" onclick="setVariant('A'); return false;" data-translate="variantA">Variante A: 10-Min Games</a>
-        <a href="?variant=B" class="variant-btn" onclick="setVariant('B'); return false;" data-translate="variantB">Variante B: Multisensory Grammar</a>
+        <a href="?variant=A" class="variant-btn" onclick="handleMobileClick('?variant=A', 'variant-change', { variant: 'A' }); setVariant('A'); return false;" data-translate="variantA">Variante A: 10-Min Games</a>
+        <a href="?variant=B" class="variant-btn" onclick="handleMobileClick('?variant=B', 'variant-change', { variant: 'B' }); setVariant('B'); return false;" data-translate="variantB">Variante B: Multisensory Grammar</a>
     </div>
 
     <!-- Screen 1: Hero Landing -->
@@ -43,7 +69,7 @@
                         </div>
                     </div>
 
-                    <a href="#" class="cta-button primary" onclick="navigateWithTracking('preview.html', 'hero-to-preview'); return false;" data-translate="viewExampleGames">
+                    <a href="#" class="cta-button primary" onclick="handleMobileClick('preview.html', 'hero-to-preview'); return false;" data-translate="viewExampleGames">
                         Beispiel-Games ansehen
                     </a>
                 </div>

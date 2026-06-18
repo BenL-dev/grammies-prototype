@@ -731,51 +731,16 @@ class LanguageSystem {
             .language-selector {
                 position: fixed;
                 top: 10px;
-                right: 120px;
+                right: 20px; /* Adjusted from 120px to avoid overlap */
                 z-index: 1001;
             }
 
-            /* Mobile: Sprachumschalter nach unten links */
-            @media (max-width: 768px) {
-                .language-dropdown {
-                    top: auto;
-                    bottom: 20px;
-                    left: 20px;
-                    right: auto;
-                }
-
-                .language-btn {
-                    padding: 12px 16px;
-                    font-size: 14px;
-                    min-width: 44px;
-                    min-height: 44px;
-                }
-
-                .language-options {
-                    left: 0;
-                    right: auto;
-                    margin-top: 8px;
-                    margin-left: 0;
-                }
-            }
-
-            /* Sehr kleine Bildschirme */
-            @media (max-width: 480px) {
-                .language-dropdown {
-                    bottom: 15px;
-                    left: 15px;
-                }
-
-                .language-btn {
-                    padding: 10px 14px;
-                    font-size: 13px;
-                    min-width: 40px;
-                    min-height: 40px;
-                }
-            }
+            /* Note: Position is now handled dynamically by JavaScript */
+            /* This prevents conflicts between CSS media queries and JS positioning */
 
             .language-dropdown {
                 position: relative;
+                transition: all 0.3s ease; /* Smooth position changes */
             }
 
             .language-btn {
@@ -864,10 +829,14 @@ class LanguageSystem {
         // Insert language selector into page (wait for DOM to be ready)
         if (document.body) {
             document.body.insertBefore(languageSelector, document.body.firstChild);
+            // Set initial position after inserting
+            setTimeout(updateLanguageSelectorPosition, 10);
         } else {
             // Wait for DOM to be ready
             document.addEventListener('DOMContentLoaded', () => {
                 document.body.insertBefore(languageSelector, document.body.firstChild);
+                // Set initial position after inserting
+                setTimeout(updateLanguageSelectorPosition, 10);
             });
         }
     }
@@ -1138,12 +1107,77 @@ if (document.readyState === 'loading') {
     console.log('✅ Language System created successfully');
 }
 
-// Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-    const dropdown = document.querySelector('.language-dropdown');
-    const options = document.getElementById('language-options');
-    
-    if (dropdown && !dropdown.contains(event.target) && options) {
-        options.classList.remove('open');
+    // Dynamic language selector positioning
+    window.updateLanguageSelectorPosition = updateLanguageSelectorPosition;
+    updateLanguageSelectorPosition();
+    window.addEventListener('resize', function() {
+        // Debounce resize events for better performance
+        clearTimeout(window.languageSelectorResizeTimeout);
+        window.languageSelectorResizeTimeout = setTimeout(updateLanguageSelectorPosition, 100);
+    });
+
+    function updateLanguageSelectorPosition() {
+        const languageSelector = document.querySelector('.language-selector');
+        if (!languageSelector) return;
+
+        const windowWidth = window.innerWidth;
+        const languageDropdown = languageSelector.querySelector('.language-dropdown');
+        const languageBtn = languageSelector.querySelector('.language-btn');
+
+        if (windowWidth <= 480) {
+            // Very small screens: bottom left
+            languageDropdown.style.top = 'auto';
+            languageDropdown.style.bottom = '15px';
+            languageDropdown.style.left = '15px';
+            languageDropdown.style.right = 'auto';
+            languageDropdown.style.transform = 'none';
+
+            // Adjust button size for very small screens
+            if (languageBtn) {
+                languageBtn.style.padding = '10px 14px';
+                languageBtn.style.fontSize = '13px';
+                languageBtn.style.minWidth = '40px';
+                languageBtn.style.minHeight = '40px';
+            }
+        } else if (windowWidth <= 768) {
+            // Mobile: bottom left
+            languageDropdown.style.top = 'auto';
+            languageDropdown.style.bottom = '20px';
+            languageDropdown.style.left = '20px';
+            languageDropdown.style.right = 'auto';
+            languageDropdown.style.transform = 'none';
+
+            // Adjust button size for mobile
+            if (languageBtn) {
+                languageBtn.style.padding = '12px 16px';
+                languageBtn.style.fontSize = '14px';
+                languageBtn.style.minWidth = '44px';
+                languageBtn.style.minHeight = '44px';
+            }
+        } else {
+            // Desktop: top right
+            languageDropdown.style.top = '10px';
+            languageDropdown.style.bottom = 'auto';
+            languageDropdown.style.left = 'auto';
+            languageDropdown.style.right = '20px';
+            languageDropdown.style.transform = 'none';
+
+            // Reset button size for desktop
+            if (languageBtn) {
+                languageBtn.style.padding = '12px 18px';
+                languageBtn.style.fontSize = '14px';
+                languageBtn.style.minWidth = 'auto';
+                languageBtn.style.minHeight = 'auto';
+            }
+        }
     }
-});
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.language-dropdown');
+        const options = document.getElementById('language-options');
+
+        if (dropdown && !dropdown.contains(event.target) && options) {
+            options.classList.remove('open');
+        }
+    });
